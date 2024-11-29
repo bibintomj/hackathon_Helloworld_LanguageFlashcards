@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Header from "./components/Header"; // Import Header
 import Footer from "./components/Footer"; // Import Footer
 import FlashcardDeck from "./components/FlashcardDeck";
+import ThankYou from "./components/ThankYou";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import ContactUs from "./components/ContactUs";
 import About from "./components/About";
@@ -94,12 +95,17 @@ function App() {
     <Router>
       <div className="min-h-screen bg-gray-900 text-white flex flex-col">
         <Header /> {/* Always displayed */}
-        <main className="flex-grow">
+        <main
+          className={`flex-grow ${
+            location.pathname === "/thank-you" ? "flex items-center" : ""
+          }`}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/flashcards" element={<FlashcardGenerator />} />
+            <Route path="/thank-you" element={<ThankYou />} />
           </Routes>
         </main>
         <Footer /> {/* Always displayed */}

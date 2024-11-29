@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Flashcard from "./Flashcard";
+import { useNavigate } from "react-router-dom";
 
 export default function FlashcardDeck({ cards }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const navigate = useNavigate();
 
   const goToNext = () => {
     if (currentIndex < cards.length - 1) {
       setIsFlipped(false);
       setCurrentIndex(currentIndex + 1);
+    } else {
+      // Navigate to Thank You page
+      navigate("/thank-you");
     }
   };
 
@@ -42,10 +47,10 @@ export default function FlashcardDeck({ cards }) {
 
         <button
           onClick={goToNext}
-          disabled={currentIndex === cards.length - 1}
+          // disabled={currentIndex === cards.length - 1}
           className={`p-2 rounded-full ${
             currentIndex === cards.length - 1
-              ? "text-gray-400 cursor-not-allowed"
+              ? "text-gray-400"
               : "text-indigo-600 hover:bg-indigo-100"
           }`}
         >
